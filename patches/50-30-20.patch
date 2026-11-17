@@ -1,0 +1,307 @@
+--- a/dashboard.html
++++ b/dashboard.html
+@@ -250,6 +250,54 @@
+ .stale-box li { margin-bottom: 8px; }
+ .stale-box p { margin: 0; padding: 4px 18px 0; font-size: 14px; color: var(--ink2); }
+ .stale-box button { display: block; width: calc(100% - 36px); margin: 14px 18px 18px; padding: 11px; border-radius: 12px; background: #c62828; color: #fff; font-weight: 700; }
++/* 50/30/20 */
++.b5-inc { margin-inline-start: auto; text-align: end; line-height: 1.2; }
++.b5-inc b { display: block; font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
++.b5-strips { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 8px 12px; align-items: center; margin: 4px 0 10px; }
++.b5-strip { display: flex; height: 54px; border-radius: 12px; overflow: hidden; gap: 2px; }
++.b5-strip.b5-target { height: 36px; border-radius: 10px; }
++.b5-seg { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; overflow: hidden; white-space: nowrap; line-height: 1.15; font-variant-numeric: tabular-nums; }
++.b5-seg b { font-size: 15px; font-weight: 800; } .b5-seg small { font-size: 11.5px; font-weight: 550; }
++.b5-target .b5-seg b { font-size: 13px; }
++.b5-seg.tiny b, .b5-seg.tiny small { display: none; }
++.b5-left { background: repeating-linear-gradient(135deg, var(--soft) 0 6px, var(--wash) 6px 12px); color: var(--ink2); }
++.b5-verdict { display: grid; gap: 4px; padding: 12px 14px; border-radius: 14px; background: var(--info-bg); margin-top: 12px; font-size: 14.5px; }
++.b5-verdict b { font-size: 16px; }
++.b5-verdict.good { background: var(--good-bg); }
++.b5-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 14px; }
++.b5-card { display: flex; flex-direction: column; gap: 10px; }
++.b5-card .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
++.b5-tag { font-weight: 700; font-size: 14px; padding: 3px 11px; border-radius: 99px; color: var(--ink); white-space: nowrap; }
++.b5-big { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
++.b5-big b { font-size: 30px; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
++.b5-big span { font-size: 17px; font-weight: 700; color: var(--ink2); font-variant-numeric: tabular-nums; }
++.b5-track { position: relative; height: 10px; border-radius: 99px; background: var(--wash); }
++.b5-fill { height: 100%; border-radius: 99px; max-width: 100%; }
++.b5-mark { position: absolute; top: -4px; bottom: -4px; width: 3px; border-radius: 2px; background: var(--ink); margin-inline-start: -1.5px; }
++.b5-row2 { grid-template-columns: minmax(0, 1fr) 300px; }
++.b5-trow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding: 14px 0; border-top: 1px solid var(--grid); }
++.b5-trow:first-child { border-top: 0; padding-top: 4px; }
++.b5-tname { flex: 0 0 120px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
++.b5-bars { flex: 1 1 260px; min-width: 0; }
++.b5-area { position: relative; height: 96px; display: flex; align-items: flex-end; gap: 8px; direction: ltr; }
++.b5-col { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 2px; min-width: 0; }
++.b5-col span { font-size: 12px; color: var(--ink2); font-variant-numeric: tabular-nums; }
++.b5-col.last span { color: var(--ink); font-weight: 800; }
++.b5-bar { width: 100%; max-width: 44px; border-radius: 6px 6px 2px 2px; }
++.b5-tline { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--ink); opacity: .45; pointer-events: none; }
++.b5-axis { display: flex; gap: 8px; direction: ltr; font-size: 12px; color: var(--muted); margin-top: 4px; }
++.b5-axis span { flex: 1 1 0; text-align: center; }
++.b5-tnow { flex: 0 0 150px; }
++.b5-tnow b { display: block; font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums; }
++.b5-good { color: var(--good); font-weight: 700; font-size: 13.5px; } .b5-bad { color: var(--crit); font-weight: 700; font-size: 13.5px; } .b5-flat { color: var(--ink2); font-weight: 700; font-size: 13.5px; }
++.b5-sel { font-size: 13px; padding: 4px 8px; border-radius: 9px; font-weight: 650; min-height: 32px; }
++.b5-tbl td { vertical-align: middle; }
++.b5-tbl tr.b5-u td:first-child { box-shadow: inset -3px 0 0 var(--warn); }
++.b5-figure { font-size: 34px; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; font-variant-numeric: tabular-nums; }
++.b5-box { background: var(--soft); border-radius: 14px; padding: 10px 14px; margin-top: 10px; }
++.b5-box b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
++@media (max-width: 1240px) { .b5-row2 { grid-template-columns: minmax(0, 1fr); } }
++@media (max-width: 980px) { .b5-cards { grid-template-columns: minmax(0, 1fr); } .b5-tnow { flex-basis: 100%; } }
+ @media (max-width: 1240px) { .top { grid-template-columns: repeat(3, minmax(0, 1fr)); } .hero { grid-column: 1 / -1; } .mid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .mid > :first-child { grid-column: 1 / -1; } .cats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .bottom { grid-template-columns: minmax(0, 1fr); } }
+ @media (max-width: 860px) {
+   .app { grid-template-columns: minmax(0, 1fr); margin: 0; border-radius: 0; border: 0; min-height: 100vh; }
+@@ -277,6 +325,7 @@
+       <button data-view="home"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>לוח בקרה</button>
+       <button data-view="flow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg>תזרים</button>
+       <button data-view="budget"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><path d="M12 3.5V8"/></svg>תקציב</button>
++      <button data-view="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4.1A8 8 0 1019.9 13H11z"/><path d="M14 3.5a7 7 0 016.5 6.5H14z"/></svg>50/30/20</button>
+       <button data-view="spend"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10.5h18M7 15h3"/></svg>הוצאות</button>
+       <button data-view="wealth"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-9"/><path d="M15 6h6v6"/></svg>הון</button>
+       <button data-view="rebal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M6 20h12M5 7h14"/><path d="M5 7l-3 7a3.200 3.200 0 006 0zM19 7l-3 7a3.200 3.200 0 006 0z"/></svg>איזון תיק</button>
+@@ -360,6 +409,20 @@
+       </div>
+     </section>
+ 
++    <section class="view" id="view-plan" hidden>
++      <h1>50/30/20</h1>
++      <div class="lead">50% לצרכים, 30% לרצונות ו-20% לחיסכון, מתוך ההכנסות בפועל של החודש</div>
++      <div class="card" id="planHero" style="margin-bottom:14px"></div>
++      <div class="b5-cards" id="planCards"></div>
++      <div class="grid b5-row2">
++        <div class="card"><div class="head"><div><h2>מתכנסים ליעד?</h2><div class="sub">כל עמודה היא חודש, באחוזים מההכנסות. הקו המקווקו הוא היעד</div></div></div><div id="planTrend"></div></div>
++        <div class="card" id="planLeft"></div>
++      </div>
++      <div class="card" style="margin-bottom:14px"><div class="head"><div><h2>כל ההוצאות לפי סל</h2><div class="sub" id="planTableSub"></div></div></div><div class="tbl-wrap" id="planTable"></div></div>
++      <div class="grid two"><div class="card" id="planFirst"></div><div class="card" id="planEmergency"></div></div>
++      <div class="note">פנסיה וקרן השתלמות שמופרשות מהמשכורת לא נספרות ב-20%: הן כבר מחוץ להכנסה נטו.</div>
++    </section>
++
+     <section class="view" id="view-spend" hidden>
+       <h1>הוצאות</h1>
+       <div class="lead">כל ההוצאות מסודרות לפי קטגוריות</div>
+@@ -1034,12 +1097,193 @@
+   $('txCat').innerHTML = `<option value="">כל הקטגוריות</option>` + cats.map((c) => `<option value="${h(c)}">${h(c)}</option>`).join('');
+ }
+ 
++/* 50/30/20. Every expense lands in one bucket: needs, wants or savings. A choice made in the table is kept
++   per category, and per business inside the mixed categories "אחר" and "כללי". It syncs like the other inputs. */
++const B5 = {
++  n: { name: 'צרכים', target: 50, color: 'var(--s1)', ink: '#fff', tint: 'var(--t4)' },
++  w: { name: 'רצונות', target: 30, color: 'var(--s2)', ink: '#16224a', tint: 'var(--t3)' },
++  s: { name: 'חיסכון והשקעות', target: 20, color: 'var(--s3)', ink: '#16224a', tint: 'var(--t1)' },
++  u: { name: 'לא משויך', target: 0, color: 'var(--axis)', ink: 'var(--ink)', tint: 'var(--warn-bg)' },
++};
++const B5_KEYS = ['n', 'w', 's'];
++const B5_CAT = {
++  'דיור': 'n', 'סופר': 'n', 'ארנונה': 'n', 'חשמל': 'n', 'מים': 'n', 'גז': 'n', 'ועד בית': 'n', 'בריאות': 'n', 'פארמה': 'n', 'ביטוח': 'n',
++  'תקשורת': 'n', 'תחבורה ציבורית': 'n', 'רכב': 'n', 'דלק': 'n', 'חינוך': 'n', 'גן מטפלת': 'n', 'עמלות': 'n', 'חיות מחמד': 'n', 'תשלומים': 'n',
++  'אוכל בחוץ': 'w', 'ביגוד והנעלה': 'w', 'פנאי': 'w', 'טיפוח ואסתטיקה': 'w', 'אימונים': 'w', 'מתנות🎁': 'w', 'מתנות': 'w', 'תרומה': 'w', 'דיגיטל': 'w', 'קניות': 'w',
++  [SAVING]: 's',
++};
++const B5_SPLIT = new Set(['אחר', 'כללי']);
++const B5_BIZ = [[/עיריי/, 'n'], [/aliexpress|איקאה|ikea|צעצוע|ksp|padel|lazuz|apartments|הסטוק|מזרונ|הדפס/i, 'w']];
++const B5_NOTE = { 'תקשורת': 'האם החבילה באמת הכרחית?', 'דיגיטל': 'מנויים: לבדוק מה לא בשימוש', 'דיור': 'חלק מהחזר משכנתא הוא החזר קרן, כלומר חיסכון' };
++const B5MAPKEY = 'bucket-map-v1';
++let bucketMap = readMap(B5MAPKEY);
++const b5KeyOf = (t) => (B5_SPLIT.has(t.cat) ? 'm:' + (t.name || '') : 'c:' + t.cat);
++const b5Default = (t) => {
++  if (B5_SPLIT.has(t.cat)) { for (const [re, b] of B5_BIZ) if (re.test(t.name || '')) return b; return 'u'; }
++  return B5_CAT[t.cat] || 'u';
++};
++const bucketOf = (t) => bucketMap[b5KeyOf(t)] || b5Default(t);
++
++function b5Month(m) {
++  const r = { income: stats[m] ? stats[m].income : 0, n: 0, w: 0, s: 0, u: 0, rows: {} };
++  for (const t of live) {
++    if (t.month !== m || kind(t) === 'income') continue;
++    const b = bucketOf(t), v = value(t), key = b5KeyOf(t);
++    r[b] += v;
++    const row = (r.rows[key] = r.rows[key] || { key, cat: t.cat, name: B5_SPLIT.has(t.cat) ? (t.name || 'ללא שם') : t.cat, v: 0, n: 0, b, def: b5Default(t) });
++    row.v += v; row.n++;
++  }
++  r.left = r.income - r.n - r.w - r.s - r.u;
++  return r;
++}
++const b5Pct = (v, inc) => (inc > 0 ? (v / inc) * 100 : 0);
++const b5P = (p) => `${Math.round(p)}%`;
++
++function setBucket(key, b, def) {
++  if (b === def) delete bucketMap[key]; else bucketMap[key] = b;
++  try { localStorage.setItem(B5MAPKEY, JSON.stringify(bucketMap)); } catch (e) { /* storage unavailable */ }
++  syncDirty('buckets');
++  renderPlan();
++}
++
++function renderPlan() {
++  const r = b5Month(selected), inc = r.income, open = selected === D.currentMonth;
++  const ids = ['planHero', 'planCards', 'planTrend', 'planLeft', 'planTable', 'planFirst', 'planEmergency'];
++  if (!(inc > 0)) {
++    ids.forEach((id) => { $(id).innerHTML = ''; });
++    $('planHero').innerHTML = '<div class="muted">אין הכנסות בחודש הזה, ולכן אי אפשר לחשב אחוזים.</div>';
++    return;
++  }
++  const tgt = (k) => (inc * B5[k].target) / 100;
++  const pos = (v) => Math.max(0, v);
++
++  // Actual vs target strips. If more went out than came in, the strip is scaled to what went out.
++  const spent = pos(r.n) + pos(r.w) + pos(r.s) + pos(r.u);
++  const base = Math.max(inc, spent);
++  const seg = (k, v, target) => {
++    const w = (v / base) * 100, p = b5Pct(v, inc);
++    const bg = target ? B5[k].tint : B5[k].color, ink = target ? 'var(--ink)' : B5[k].ink;
++    return `<div class="b5-seg${w < 8 ? ' tiny' : ''}" style="width:${w}%;background:${bg};color:${ink}" title="${h(B5[k].name)}: ${b5P(p)} · ${ils(v)}"><b>${b5P(p)}</b><small>${ils(v)}</small></div>`;
++  };
++  const actual = [...B5_KEYS, 'u'].filter((k) => r[k] > 0.5).map((k) => seg(k, r[k], false)).join('') +
++    (r.left > 0.5 ? `<div class="b5-seg b5-left${(r.left / base) * 100 < 8 ? ' tiny' : ''}" style="width:${(r.left / base) * 100}%" title="נשאר בחשבון: ${ils(r.left)}"><b>${b5P(b5Pct(r.left, inc))}</b><small>נשאר</small></div>` : '');
++  const target = B5_KEYS.map((k) => seg(k, tgt(k), true)).join('');
++  const legend = [...B5_KEYS.map((k) => `<span><i style="background:${B5[k].color}"></i>${B5[k].name}</span>`),
++    r.u > 0.5 ? `<span><i style="background:${B5.u.color}"></i>לא משויך</span>` : '',
++    r.left > 0.5 ? '<span><i class="b5-left"></i>נשאר בחשבון</span>' : ''].join('');
++
++  const gapS = tgt('s') - r.s, overN = r.n - tgt('n'), overW = r.w - tgt('w');
++  const lines = [];
++  let title, good = false;
++  if (gapS > 0.5) {
++    title = `חסרים ${ils(gapS)} לחיסכון ${open ? 'החודש' : 'בחודש הזה'}`;
++    if (r.left > 0.5) lines.push(`נשארו ${ils(r.left)} בחשבון שלא הועברו לחיסכון. העברה שלהם ${r.left >= gapS ? 'סוגרת את הפער' : `מקטינה את הפער ל-${ils(gapS - r.left)}`}.`);
++    const overs = [overN > 0.5 ? `בצרכים (${ils(overN)})` : '', overW > 0.5 ? `ברצונות (${ils(overW)})` : ''].filter(Boolean);
++    if (overs.length) lines.push(`יש חריגה ${overs.join(' וגם ')}.`);
++  } else { title = `החיסכון ביעד: ${b5P(b5Pct(r.s, inc))} מההכנסות`; good = true; }
++  if (spent > inc + 0.5) lines.push(`יצא יותר מנכנס ב-${ils(spent - inc)}, ולכן הפס העליון ארוך מההכנסות.`);
++  if (r.u > inc * 0.02) lines.push(`${ils(r.u)} (${b5P(b5Pct(r.u, inc))}) עדיין לא משויכים לסל. אפשר לשייך אותם בטבלה למטה, והחישוב יתעדכן.`);
++  if (open) lines.push('החודש עדיין פתוח, אז המספרים ישתנו עד סופו.');
++
++  $('planHero').innerHTML = `<div class="head"><div><h2>איפה אנחנו מול היעד</h2><div class="sub">100% = ההכנסות בפועל בחודש</div></div><div class="b5-inc"><span class="sub">הכנסות ב${h(monthName(selected))}</span><b>${ils(inc)}</b></div></div>
++    <div class="b5-strips"><b style="font-size:14px">בפועל</b><div class="b5-strip">${actual}</div><span class="sub">יעד</span><div class="b5-strip b5-target">${target}</div></div>
++    <div class="legend">${legend}</div>
++    <div class="b5-verdict${good ? ' good' : ''}"><b>${title}</b>${lines.map((l) => `<span>${l}</span>`).join('')}</div>`;
++
++  // One card per bucket.
++  const rows = Object.values(r.rows).filter((x) => Math.abs(x.v) > 0.5);
++  $('planCards').innerHTML = B5_KEYS.map((k) => {
++    const amt = r[k], p = b5Pct(amt, inc), t = B5[k].target, gap = amt - tgt(k);
++    const bad = k === 's' ? gap < -0.5 : gap > 0.5;
++    const gapTxt = k === 's' ? (gap < -0.5 ? `חסרים ${ils(-gap)} כדי להגיע ליעד` : `מעל היעד ב-${ils(gap)}`) : (gap > 0.5 ? `חריגה של ${ils(gap)} מעל היעד` : `מתחת ליעד ב-${ils(-gap)}`);
++    const top = rows.filter((x) => x.b === k).sort((a, b) => b.v - a.v).slice(0, 3).map((x) => `${h(x.name)} ${ils(x.v)}`).join(' · ');
++    const max = Math.max(70, p * 1.08);
++    return `<div class="card b5-card"><div class="top"><span class="b5-tag" style="background:${B5[k].tint}">${B5[k].name}</span><span class="sub">יעד ${t}% · ${ils(tgt(k))}</span></div>
++      <div class="b5-big"><b>${ils(amt)}</b><span>${b5P(p)}</span></div>
++      <div class="b5-track"><div class="b5-fill" style="width:${(pos(p) / max) * 100}%;background:${B5[k].color}"></div><div class="b5-mark" style="inset-inline-start:${(t / max) * 100}%" title="יעד ${t}%"></div></div>
++      <span class="pill ${bad ? 'crit' : 'good'}" style="align-self:flex-start">${gapTxt}</span>
++      <div class="note">${top || 'אין הוצאות בסל הזה'}</div></div>`;
++  }).join('');
++
++  // Trend: one row of monthly bars per bucket, up to the selected month.
++  const list = meaningful.filter((m) => m <= selected).slice(-6);
++  const per = list.map((m) => (m === selected ? r : b5Month(m)));
++  $('planTrend').innerHTML = list.length < 2 ? '<div class="muted">צריך לפחות שני חודשים כדי להציג מגמה.</div>' : B5_KEYS.map((k) => {
++    const t = B5[k].target, vals = per.map((x) => b5Pct(x[k], x.income));
++    const max = Math.max(t, ...vals) * 1.15, H = 72, px = (v) => Math.max(2, (Math.min(pos(v), max) / max) * H);
++    const dist = (arr) => avg(arr.map((v) => Math.abs(v - t)));
++    const half = Math.floor(vals.length / 2), d = dist(vals.slice(0, half)) - dist(vals.slice(half));
++    const status = d > 1 ? '<span class="b5-good">מתקרבים ליעד</span>' : d < -1 ? '<span class="b5-bad">מתרחקים מהיעד</span>' : '<span class="b5-flat">בערך באותו מרחק</span>';
++    const last3 = avg(vals.slice(-3));
++    const bars = vals.map((v, i) => { const last = i === vals.length - 1; return `<div class="b5-col${last ? ' last' : ''}"><span>${Math.round(v)}</span><div class="b5-bar" style="height:${px(v)}px;background:${last ? B5[k].color : B5[k].tint}"></div></div>`; }).join('');
++    return `<div class="b5-trow"><div class="b5-tname"><span class="b5-tag" style="background:${B5[k].tint}">${B5[k].name}</span><span class="sub">יעד ${t}%</span></div>
++      <div class="b5-bars"><div class="b5-area" role="img" aria-label="${h(B5[k].name)} באחוזים מההכנסות: ${list.map((m, i) => `${monthShort(m)} ${Math.round(vals[i])}%`).join(', ')}. יעד ${t}%"><div class="b5-tline" style="bottom:${px(t)}px"></div>${bars}</div>
++      <div class="b5-axis">${list.map((m, i) => `<span${i === list.length - 1 ? ' style="color:var(--ink);font-weight:700"' : ''}>${monthShort(m)}</span>`).join('')}</div></div>
++      <div class="b5-tnow"><b>${b5P(vals[vals.length - 1])}</b>${status}<div class="note">ממוצע 3 חודשים אחרונים: ${b5P(last3)}</div></div></div>`;
++  }).join('');
++
++  // What is left for wants.
++  const wBudget = tgt('w'), wLeft = wBudget - r.w;
++  let leftHtml = `<div class="head"><div><h2>${open ? 'נשאר לרצונות החודש' : 'רצונות בחודש הזה'}</h2><div class="sub">מסגרת: 30% מההכנסות, ${ils(wBudget)}</div></div></div>
++    <div class="b5-figure" style="color:${wLeft < 0 ? 'var(--crit)' : 'var(--ink)'}">${wLeft < 0 ? 'חריגה של ' + ils(-wLeft) : ils(wLeft)}</div>
++    <div class="b5-track" style="margin:10px 0 6px;background:var(--t3)"><div class="b5-fill" style="width:${Math.min(100, (pos(r.w) / wBudget) * 100)}%;background:var(--s2)"></div></div>
++    <div class="note" style="display:flex;justify-content:space-between"><span>יצאו ${ils(r.w)}</span><span>מתוך ${ils(wBudget)}</span></div>`;
++  if (open) {
++    const now = new Date(), [yy, mm] = selected.split('-').map(Number);
++    const daysLeft = Math.max(1, new Date(yy, mm, 0).getDate() - now.getDate() + 1);
++    leftHtml += `<div class="b5-box"><span class="sub">אפשר להוציא ביום, בממוצע, עוד ${daysLeft} ימים</span><b>${ils(pos(wLeft) / daysLeft)}</b></div><div class="note" style="margin-top:8px">ההכנסות של החודש עוד יכולות לגדול, ואז גם המסגרת.</div>`;
++  }
++  $('planLeft').innerHTML = leftHtml;
++
++  // All expenses by bucket, with a bucket picker per row.
++  const order = { u: 0, n: 1, w: 2, s: 3 };
++  const sorted = rows.slice().sort((a, b) => order[a.b] - order[b.b] || b.v - a.v);
++  const uCount = sorted.filter((x) => x.b === 'u').length;
++  $('planTableSub').textContent = (uCount ? `${uCount} שורות עדיין לא משויכות לסל, והן מופיעות ראשונות. ` : '') + 'אפשר לשנות סל לכל שורה. הבחירה נשמרת לחודשים הבאים ומסונכרנת בין המכשירים. ב"אחר" ו"כללי" כל עסק משויך בנפרד.';
++  $('planTable').innerHTML = `<table class="b5-tbl"><thead><tr><th>קטגוריה / עסק</th><th>סל</th><th class="n">סכום</th><th class="n">מההכנסות</th><th>הערה</th></tr></thead><tbody>${sorted.map((x) => {
++    const manual = bucketMap[x.key] && bucketMap[x.key] !== x.def;
++    const note = x.b === 'u' ? '<span class="pill warn">לבחור סל</span>' : manual ? 'שויך ידנית' : h(B5_NOTE[x.cat] || '');
++    const opts = ['n', 'w', 's', 'u'].map((k) => `<option value="${k}"${k === x.b ? ' selected' : ''}>${B5[k].name}</option>`).join('');
++    return `<tr class="b5-${x.b}"><td>${h(x.name)}${B5_SPLIT.has(x.cat) ? `<div class="note">${h(x.cat)}${x.n > 1 ? ` · ${x.n} תנועות` : ''}</div>` : ''}</td>
++      <td><select class="b5-sel" data-key="${h(x.key)}" data-def="${x.def}" aria-label="סל עבור ${h(x.name)}" style="background:${B5[x.b].tint}">${opts}</select></td>
++      <td class="n">${ils(x.v)}</td><td class="n">${b5P(b5Pct(x.v, inc))}</td><td class="note">${note}</td></tr>`;
++  }).join('')}</tbody></table>`;
++  $('planTable').querySelectorAll('select').forEach((s) => s.addEventListener('change', () => setBucket(s.dataset.key, s.value, s.dataset.def)));
++
++  // Paid ourselves first?
++  const monthTx = live.filter((t) => t.month === selected);
++  const savingTx = monthTx.filter((t) => kind(t) !== 'income' && bucketOf(t) === 's' && !t.isIncome).sort((a, b) => a.date.localeCompare(b.date));
++  const salary = monthTx.filter((t) => t.isIncome && t.cat === 'משכורת').sort((a, b) => a.date.localeCompare(b.date))[0];
++  const icon = (ok) => `<span class="ic" style="background:${ok ? 'var(--good-bg)' : 'var(--crit-bg)'};color:${ok ? 'var(--good)' : 'var(--crit)'}"><svg viewBox="0 0 24 24" aria-hidden="true">${ok ? '<path d="M6 12.5l4 4L18 8"/>' : '<path d="M7 7l10 10M17 7L7 17"/>'}</svg></span>`;
++  let first;
++  if (!savingTx.length) first = `<div class="head">${icon(false)}<h2>שילמנו לעצמנו קודם?</h2></div><div>לא הועבר כסף לחיסכון ${open ? 'החודש עדיין' : 'בחודש הזה'}.</div>`;
++  else {
++    const d0 = savingTx[0].date, lag = salary ? Math.round((new Date(d0) - new Date(salary.date)) / 864e5) : null;
++    const ok = lag != null && lag <= 3;
++    first = `<div class="head">${icon(ok)}<h2>שילמנו לעצמנו קודם?</h2></div><div>${ils(r.s)} הועברו לחיסכון. ההעברה הראשונה ב-${dateShort(d0)}${salary ? `, המשכורת נכנסה ב-${dateShort(salary.date)}` : ''}.</div>${!ok && lag != null ? `<div class="note">ההעברה יצאה ${lag} ימים אחרי המשכורת. כדאי להזיז את הוראת הקבע ליום המשכורת.</div>` : ''}`;
++  }
++  if (gapS > 0.5) first += `<div class="note" style="color:var(--crit);margin-top:6px">כדי להגיע ל-20%: להגדיל את ההעברה החודשית ב-${ils(gapS)}.</div>`;
++  $('planFirst').innerHTML = first;
++
++  // Emergency fund: liquid money against average monthly needs.
++  const bankNow = ((D.balances && D.balances.balances) || []).reduce((s, b) => s + b.balance, 0);
++  const liquid = bankNow + wealthAssets.filter((a) => layerOf(a) === 'liquid').reduce((s, a) => s + (latest(a) ? latest(a).balance : 0), 0);
++  const needsAvg = avg(per.map((x) => x.n).filter((v) => v > 0));
++  if (!needsAvg) { $('planEmergency').innerHTML = '<div class="muted">אין מספיק נתונים לחישוב קרן חירום.</div>'; return; }
++  const cover = liquid / needsAvg;
++  $('planEmergency').innerHTML = `<div class="head"><span class="ic" style="background:var(--t1)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.500-3 7.500-7 9-4-1.500-7-4.500-7-9V6z"/></svg></span><h2>קרן חירום</h2></div>
++    <div class="b5-big"><b>${cover.toLocaleString('he-IL', { maximumFractionDigits: 1 })}</b><span>חודשי צרכים מכוסים</span></div>
++    <div class="b5-track" style="margin:10px 0 6px"><div class="b5-fill" style="width:${Math.min(100, (cover / 6) * 100)}%;background:var(--s3)"></div><div class="b5-mark" style="inset-inline-start:50%" title="3 חודשים"></div></div>
++    <div class="note" style="display:flex;justify-content:space-between"><span>0</span><span>מומלץ 3 עד 6 חודשים</span><span>6</span></div>
++    <div class="note" style="margin-top:6px">הון נזיל ${ils(liquid)} (בנק ונכסים נזילים מלשונית הון) מול צרכים של ${ils(needsAvg)} בחודש בממוצע.</div>`;
++}
++
+ const renderCharts = () => { renderMiniArea(); renderTrend(); renderWealthChart(); };
+ 
+ function renderMonth() {
+   $('monthTag').textContent = selected === D.currentMonth ? 'חודש פתוח, עדיין מתעדכן' : selected > D.currentMonth ? 'החודש הבא, חלקי' : 'חודש סגור';
+   renderHero(); renderStats(); renderNumbers(); renderAlerts(); renderCatCards();
+-  renderBudget(); renderCats(); renderSpend();
++  renderBudget(); renderCats(); renderPlan(); renderSpend();
+   fillTxCats(); renderTx(); renderCharts();
+ }
+ 
+@@ -1056,7 +1300,7 @@
+   $('banner').innerHTML = msgs.map((m) => `<div class="banner" role="alert">! ${h(m)}</div>`).join('');
+ }
+ 
+-const VIEWS = ['home', 'flow', 'budget', 'spend', 'wealth', 'rebal', 'tx'];
++const VIEWS = ['home', 'flow', 'budget', 'plan', 'spend', 'wealth', 'rebal', 'tx'];
+ function showView(v) {
+   if (!VIEWS.includes(v)) v = 'home';
+   for (const id of VIEWS) $('view-' + id).hidden = id !== v;
+@@ -1476,6 +1720,7 @@
+     sfees: { get: () => wealthSFees, set: (v) => { wealthSFees = v; store(SFEEKEY, v); wealthChanged(); }, hasData: () => Object.keys(wealthSFees).length > 0 },
+     liquid: { get: () => wealthLiquid, set: (v) => { wealthLiquid = v; store(LIQKEY, v); wealthChanged(); }, hasData: () => Object.keys(wealthLiquid).length > 0 },
+     names: { get: () => wealthNames, set: (v) => { wealthNames = v; store(NAMEKEY, v); wealthChanged(); }, hasData: () => Object.keys(wealthNames).length > 0 },
++    buckets: { get: () => bucketMap, set: (v) => { bucketMap = v || {}; store(B5MAPKEY, bucketMap); renderPlan(); }, hasData: () => Object.keys(bucketMap).length > 0 },
+   };
+ 
+   let meta = {};
+@@ -1515,7 +1760,7 @@
+       for (let attempt = 0; attempt < 4; attempt++) {
+         const { doc, sha } = await fetchRemote();
+         takeNewer(doc);
+-        const out = {};
++        const out = { ...doc };
+         for (const g of Object.keys(GROUPS)) out[g] = doc[g] && doc[g].t > meta[g] ? doc[g] : { t: meta[g], v: GROUPS[g].get() };
+         const iv = crypto.getRandomValues(new Uint8Array(12));
+         const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, await keyP, new TextEncoder().encode(JSON.stringify(out))));
